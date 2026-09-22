@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Мини-Scratch</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">Мини-Scratch</div>
+    <nav class="project-actions">
+      <button type="button" id="btn-new">Новый</button>
+      <button type="button" id="btn-examples">Примеры</button>
+      <button type="button" id="btn-open">Открыть…</button>
+      <button type="button" id="btn-save">Сохранить</button>
+      <input type="file" id="file-input" accept=".json,application/json" hidden>
+    </nav>
+    <div class="run-controls">
+      <button type="button" id="btn-flag" class="icon-btn" title="Запустить" aria-label="Запустить">
+        <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+          <path d="M5 3v18" stroke="#3b7a1a" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M6 4c4-2 7 2 12 0v9c-5 2-8-2-12 0z" fill="#4cbf56" stroke="#3b7a1a" stroke-width="1.2"/>
+        </svg>
+      </button>
+      <button type="button" id="btn-stop" class="icon-btn" title="Остановить" aria-label="Остановить">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <polygon points="8,3 16,3 21,8 21,16 16,21 8,21 3,16 3,8" fill="#ec5959" stroke="#b84848" stroke-width="1.2"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="editor">
+      <div id="blockly"></div>
+    </section>
+
+    <aside class="side">
+      <div class="stage-wrap">
+        <canvas id="stage" width="960" height="720"></canvas>
+      </div>
+      <div class="stage-info" id="stage-info">x: 0 &nbsp; y: 0</div>
+
+      <div class="sprite-panel">
+        <div class="sprite-props">
+          <label>Спрайт
+            <input type="text" id="sprite-name" maxlength="24" autocomplete="off">
+          </label>
+          <span class="sprite-coords" id="sprite-coords"></span>
+          <button type="button" id="btn-flip" class="toggle" title="Отразить спрайт по горизонтали" aria-pressed="false">⇆ Зеркально</button>
+          <button type="button" id="btn-delete-sprite" class="danger">Удалить</button>
+        </div>
+        <div class="emoji-picker" id="emoji-picker" aria-label="Вид спрайта"></div>
+        <div class="sprite-list" id="sprite-list"></div>
+      </div>
+    </aside>
+  </main>
+
+  <dialog id="examples-dialog" class="examples-dialog" aria-labelledby="examples-heading">
+    <div class="examples-head">
+      <h2 id="examples-heading">Примеры</h2>
+      <button type="button" id="btn-examples-close" class="close-btn" aria-label="Закрыть">×</button>
+    </div>
+    <p class="examples-note">Выбранный пример заменит текущий проект. Чтобы не потерять свою работу, сначала нажмите «Сохранить».</p>
+    <div class="examples-list" id="examples-list"></div>
+  </dialog>
+
+  <script src="vendor/blockly/blockly_compressed.js"></script>
+  <script src="vendor/blockly/msg/ru.js"></script>
+  <script src="runtime.js"></script>
+  <script src="blocks.js"></script>
+  <script src="examples.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

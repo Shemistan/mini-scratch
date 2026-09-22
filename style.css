@@ -1,0 +1,341 @@
+:root {
+  --bg: #e9f0fb;
+  --panel: #ffffff;
+  --line: #d4dcea;
+  --text: #2a2f3a;
+  --muted: #6b7385;
+  --accent: #4c97ff;
+  --accent-dark: #3373cc;
+  --danger: #d9534f;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.4 "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* --- верхняя панель --- */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px;
+  background: var(--accent);
+  color: #fff;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.2px;
+}
+
+.project-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.project-actions button {
+  border: 0;
+  border-radius: 6px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+.project-actions button:hover { background: rgba(255, 255, 255, 0.3); }
+
+.run-controls {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 36px;
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.icon-btn:hover { background: #e6efff; }
+.icon-btn.active { box-shadow: inset 0 0 0 2px #4cbf56; background: #eafbe9; }
+
+/* --- основная раскладка --- */
+
+.layout {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+}
+
+.editor {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--panel);
+}
+
+#blockly {
+  position: absolute;
+  inset: 0;
+}
+
+.side {
+  flex: 0 0 min(492px, 42vw);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+}
+
+.stage-wrap {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+}
+
+#stage {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  touch-action: none;
+}
+
+.stage-info {
+  color: var(--muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+/* --- панель спрайтов --- */
+
+.sprite-panel {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+.sprite-props {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sprite-props label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+}
+
+.sprite-props input {
+  width: 140px;
+  padding: 5px 8px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  font: inherit;
+  color: var(--text);
+}
+
+.sprite-coords {
+  color: var(--muted);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.toggle {
+  margin-left: auto;
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text);
+}
+
+.toggle.on {
+  border-color: var(--accent);
+  background: #e6efff;
+  color: var(--accent-dark);
+}
+
+.danger {
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--danger);
+}
+
+.danger:disabled { opacity: 0.4; cursor: default; }
+
+.emoji-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.emoji-picker button {
+  width: 32px;
+  height: 32px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  font-size: 20px;
+  line-height: 1;
+}
+
+.emoji-picker button:hover { background: #f0f4fb; }
+.emoji-picker button.selected { border-color: var(--accent); background: #e6efff; }
+
+.sprite-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+
+.sprite-tile {
+  width: 76px;
+  padding: 6px 4px;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  text-align: center;
+}
+
+.sprite-tile .emoji {
+  display: block;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.sprite-tile .emoji.flipped { transform: scaleX(-1); }
+
+.sprite-tile .name {
+  display: block;
+  overflow: hidden;
+  font-size: 12px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sprite-tile.selected { border-color: var(--accent); background: #eef4ff; }
+
+.sprite-tile.add {
+  border-style: dashed;
+  color: var(--muted);
+  font-size: 28px;
+}
+
+/* --- галерея примеров --- */
+
+.examples-dialog {
+  width: min(640px, calc(100vw - 32px));
+  padding: 20px;
+  border: 0;
+  border-radius: 14px;
+  color: var(--text);
+  box-shadow: 0 12px 40px rgba(20, 30, 60, 0.25);
+}
+
+.examples-dialog::backdrop { background: rgba(20, 30, 60, 0.35); }
+
+.examples-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.examples-head h2 { margin: 0; font-size: 20px; }
+
+.close-btn {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.close-btn:hover { background: #f0f4fb; }
+
+.examples-note {
+  margin: 6px 0 14px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.examples-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.example-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 12px;
+  border: 2px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  text-align: left;
+}
+
+.example-card:hover { border-color: var(--accent); background: #f5f9ff; }
+
+.example-emoji { font-size: 32px; line-height: 1.1; }
+.example-title { font-weight: 700; font-size: 15px; }
+.example-about { font-size: 13px; }
+.example-topics { color: var(--muted); font-size: 12px; }
+
+/* узкие экраны: сцена сверху, редактор под ней */
+@media (max-width: 820px) {
+  .layout { flex-direction: column-reverse; padding: 8px 16px; }
+  .side { flex: none; }
+  .editor { flex: none; height: 70vh; }
+  .sprite-panel { flex: none; }
+  .topbar { flex-wrap: wrap; }
+}
